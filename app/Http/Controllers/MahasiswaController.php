@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Mahasiswa;
 use App\Models\Kelas;
+use App\Models\MataKuliah;
+use App\Models\mahasiswa_matakuliah;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -180,4 +182,12 @@ class MahasiswaController extends Controller
         return dd($mahasiswa);
  
 	}
+
+    public function nilai($id)
+    {
+        //menampilkan data dari relasi many to many
+        $data = Mahasiswa_MataKuliah::with("matakuliah")->where("mahasiswa_id", $id)->get();
+        $data->mahasiswa = Mahasiswa::with('kelas')->where('id', $id)->first();
+        return view('mahasiswa.nilai', compact('data'));
+    }
 }

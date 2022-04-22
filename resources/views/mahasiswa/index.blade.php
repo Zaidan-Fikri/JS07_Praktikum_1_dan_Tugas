@@ -61,6 +61,7 @@
 
             <a class="btn btn-primary" href="{{ route('mahasiswa.edit',$mhs->nim) }}">Edit</a>
             
+            <a class="btn btn-warning" href="{{ route('mahasiswa.nilai',$mhs->nim) }}">Nilai</a>
             @csrf
             @method('DELETE')
         
